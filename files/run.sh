@@ -7,8 +7,8 @@ if [ -z "$ZABBIX_SERVER" ]; then
 fi
 
 if [ -z "$HOST" ]; then
-    MACHINEID=$(cat /etc/machine-id)
-    HOST="$METADATA-$MACHINEID"
+    MACHINEID=$(cat /etc/hostname)
+    HOST="$MACHINEID"
     echo "HOST environment variable is empty, using generated host name $HOST"
 fi
 
@@ -32,6 +32,7 @@ if [ ! -z "$PSKKey" ]; then
     fi
 
     mkdir -p /etc/zabbix/tls
+    mkdir -p /var/run/zabbix
     echo "$PSKKey" > /etc/zabbix/tls/zabbix.psk
     chmod 600 /etc/zabbix/tls/zabbix.psk
     echo "TLSPSKFile=/etc/zabbix/tls/zabbix.psk" >> /etc/zabbix/zabbix_agentd.conf
