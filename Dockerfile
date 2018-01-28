@@ -22,7 +22,8 @@ RUN apt-get update && \
 RUN wget https://github.com/stedolan/jq/releases/download/jq-1.5/jq-linux64 && \
     chmod +x jq-linux64 && \
     mv jq-linux64 $(which jq)
-    mkdir -p /var/run/zabbix
+    
+RUN mkdir -p /var/run/zabbix
 
 # Install Zabbix Agent and update docker monitoring script
 # so that it uses /host/var/run/docker.sock from host mount
