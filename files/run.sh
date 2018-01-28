@@ -14,6 +14,7 @@ fi
 
 sed -i "s/^Server\=127.0.0.1/Server\=0.0.0.0\/0\,$ZABBIX_SERVER_ACTIVE/" /etc/zabbix/zabbix_agentd.conf
 sed -i "s/^ServerActive\=127.0.0.1/ServerActive\=$ZABBIX_SERVER_ACTIVE/" /etc/zabbix/zabbix_agentd.conf
+sed -i "s/^PidFile/#PidFile/" /etc/zabbix/zabbix_agentd.conf
 # Log to stdout so that docker can capture it
 sed -i "s/^LogFile\=.*/LogFile=\/proc\/self\/fd\/1/" /etc/zabbix/zabbix_agentd.conf
 echo "Hostname=$HOST" >> /etc/zabbix/zabbix_agentd.conf
